@@ -25,14 +25,16 @@ class BST_tree:
             root = Node(key)
         elif key < root.key:
             if not root.left:
-                root.left = Node(key)
-                root.left.parent = root
+                new_node = Node(key)
+                new_node.parent = root
+                root.left = new_node
             else:
                 self.insert(root.left, key)
         elif key > root.key:
             if not root.right:
-                root.right = Node(key)
-                root.right.parent = root
+                new_node = Node(key)
+                new_node.parent = root
+                root.right = new_node
             else:
                 self.insert(root.right, key)
 
@@ -79,9 +81,7 @@ def main():
     tree.insert(root, 7)
     tree.insert(root, 6)
     tree.insert(root, 8)
-    print(tree.search(root, 6))
-    tree.remove(root, 6)
-    print(tree.search(root, 6))
+    tree.print_tree(root)
 
 
 if __name__ == "__main__":
