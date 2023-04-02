@@ -72,7 +72,7 @@ class BST_tree:
             return
         space += 5
         self.print_tree_util(root.right, space)
-        print()
+        # print()
         for _ in range(5, space):
             print(end=" ")
         print(root.key)
@@ -80,26 +80,20 @@ class BST_tree:
 
 
 def main():
-    root = Node(5)
+    root = Node(25)
     tree = BST_tree(root)
-    tree.insert(root, 3)
-    tree.insert(root, 2)
-    tree.insert(root, 4)
-    tree.insert(root, 7)
-    tree.insert(root, 6)
-    tree.insert(root, 8)
-    tree.insert(root, 9)
+    tree.insert(root, 20)
+    tree.insert(root, 36)
     tree.insert(root, 10)
-    tree.insert(root, 11)
+    tree.insert(root, 22)
     tree.insert(root, 12)
-    tree.insert(root, 13)
-    tree.insert(root, 14)
-    tree.insert(root, 15)
-    tree.insert(root, 16)
-    tree.insert(root, 1)
-    tree.insert(root, 0)
-    tree.insert(root, -1)
-    tree.insert(root, -2)
+    tree.insert(root, 5)
+    tree.insert(root, 36)
+    tree.insert(root, 30)
+    tree.insert(root, 28)
+    tree.insert(root, 40)
+    tree.insert(root, 38)
+    tree.insert(root, 48)
     tree.print_tree(root)
 
 
