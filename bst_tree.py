@@ -1,3 +1,6 @@
+import random
+
+
 class Node:
     def __init__(self, key):
         self.key = key
@@ -64,36 +67,40 @@ class BST_tree:
             root = root.left
         return root
 
-    def print_tree(self, root):
-        self.print_tree_util(root, 0)
+    def print_tree(self, root, visible_layers=6):
+        print()
+        print("Binary Search Tree")
+        print("Visible nodes layers: ", visible_layers)
+        print()
+        self.print_tree_util(root, 0, visible_layers)
 
-    def print_tree_util(self, root, space):
+    def print_tree_util(self, root, space, visible_layers, recursion=1):
         if not root:
             return
         space += 5
-        self.print_tree_util(root.right, space)
-        # print()
+        recursion += 1
+        if recursion <= visible_layers:
+            self.print_tree_util(root.right, space, visible_layers, recursion)
         for _ in range(5, space):
             print(end=" ")
-        print(root.key)
-        self.print_tree_util(root.left, space)
+        if root.parent is None:
+            print("P:", end="")
+            print(root.key)
+        elif root.parent.key > root.key:
+            print("L:", end="")
+            print(root.key)
+        elif root.parent.key < root.key:
+            print("R:", end="")
+            print(root.key)
+        if recursion <= visible_layers:
+            self.print_tree_util(root.left, space, visible_layers, recursion)
 
 
 def main():
     root = Node(25)
     tree = BST_tree(root)
-    tree.insert(root, 20)
-    tree.insert(root, 36)
-    tree.insert(root, 10)
-    tree.insert(root, 22)
-    tree.insert(root, 12)
-    tree.insert(root, 5)
-    tree.insert(root, 36)
-    tree.insert(root, 30)
-    tree.insert(root, 28)
-    tree.insert(root, 40)
-    tree.insert(root, 38)
-    tree.insert(root, 48)
+    for i in range(50):
+        tree.insert(root, random.randint(1, 100))
     tree.print_tree(root)
 
 
