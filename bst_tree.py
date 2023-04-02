@@ -65,11 +65,18 @@ class BST_tree:
         return root
 
     def print_tree(self, root):
+        self.print_tree_util(root, 0)
+
+    def print_tree_util(self, root, space):
         if not root:
-            return None
+            return
+        space += 5
+        self.print_tree_util(root.right, space)
+        print()
+        for _ in range(5, space):
+            print(end=" ")
         print(root.key)
-        self.print_tree(root.left)
-        self.print_tree(root.right)
+        self.print_tree_util(root.left, space)
 
 
 def main():
@@ -81,6 +88,18 @@ def main():
     tree.insert(root, 7)
     tree.insert(root, 6)
     tree.insert(root, 8)
+    tree.insert(root, 9)
+    tree.insert(root, 10)
+    tree.insert(root, 11)
+    tree.insert(root, 12)
+    tree.insert(root, 13)
+    tree.insert(root, 14)
+    tree.insert(root, 15)
+    tree.insert(root, 16)
+    tree.insert(root, 1)
+    tree.insert(root, 0)
+    tree.insert(root, -1)
+    tree.insert(root, -2)
     tree.print_tree(root)
 
 
