@@ -4,7 +4,6 @@ import random
 from bst_tree import BST_tree, Node
 from avl_tree import AVL_Tree
 from graph_maker import graph_maker, combined_2_graph_maker
-from create_list import create_list
 
 
 def create_list(n):
