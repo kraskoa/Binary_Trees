@@ -13,18 +13,6 @@ def main():
     BST_remove_times = {}
     AVL_insert_times = {}
     AVL_search_times = {}
-    number_list = [
-        1000,
-        2000,
-        3000,
-        4000,
-        5000,
-        6000,
-        7000,
-        8000,
-        9000,
-        10000,
-    ]
 
     test_lists = {}
     for i in range(1, 10):
