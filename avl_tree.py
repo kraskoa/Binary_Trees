@@ -1,4 +1,5 @@
 import sys
+from create_list import create_list
 
 
 class Node:
@@ -89,11 +90,10 @@ class AVL_Tree:
             return self.find_node(root.right, key)
 
 
-# AVL Tree printing test case (uncomment to run).
-# Przekopiujemy do maina żeby pokazać Chabko jak działa printowanie:
-# root = None
-# test_tree = AVL_Tree(root)
-# nums = create_random_list(30)
-# for num in nums:
-#   root = myTree.insert_node(root, num)
-# myTree.print_helper(root, "", True)
+if __name__ == "__main__":
+    root = None
+    test_tree = AVL_Tree()
+    nums = create_list(30)
+    for num in nums:
+        root = test_tree.insert_node(root, num)
+    test_tree.print_helper(root, "", True)
