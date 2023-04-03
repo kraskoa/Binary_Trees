@@ -38,23 +38,29 @@ class AVL_Tree:
 
         return root
 
-    def left_rotate(self, z):
-        y = z.right
-        T2 = y.left
-        y.left = z
-        z.right = T2
-        z.height = 1 + max(self.get_height(z.left), self.get_height(z.right))
-        y.height = 1 + max(self.get_height(y.left), self.get_height(y.right))
-        return y
+    def left_rotate(self, pivot):
+        r_subtree = pivot.right
+        left_part = r_subtree.left
+        r_subtree.left = pivot
+        pivot.right = left_part
+        pivot.height = 1 + max(
+            self.get_height(pivot.left), self.get_height(pivot.right)
+        )
+        r_subtree.height = 1 + max(
+            self.get_height(r_subtree.left), self.get_height(r_subtree.right)
+        )
+        return r_subtree
 
     def right_rotate(self, z):
-        y = z.left
-        T3 = y.right
-        y.right = z
-        z.left = T3
+        l_subtree = z.left
+        right_part = l_subtree.right
+        l_subtree.right = z
+        z.left = right_part
         z.height = 1 + max(self.get_height(z.left), self.get_height(z.right))
-        y.height = 1 + max(self.get_height(y.left), self.get_height(y.right))
-        return y
+        l_subtree.height = 1 + max(
+            self.get_height(l_subtree.left), self.get_height(l_subtree.right)
+        )
+        return l_subtree
 
     def get_height(self, root):
         if not root:
@@ -67,7 +73,7 @@ class AVL_Tree:
         return self.get_height(root.left) - self.get_height(root.right)
 
     def print_helper(self, current_pointer, indent, last):
-        if current_pointer != None:
+        if current_pointer:
             sys.stdout.write(indent)
             if last:
                 sys.stdout.write("R----")
