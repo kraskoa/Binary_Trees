@@ -51,12 +51,14 @@ class AVL_Tree:
         )
         return r_subtree
 
-    def right_rotate(self, z):
-        l_subtree = z.left
+    def right_rotate(self, pivot):
+        l_subtree = pivot.left
         right_part = l_subtree.right
-        l_subtree.right = z
-        z.left = right_part
-        z.height = 1 + max(self.get_height(z.left), self.get_height(z.right))
+        l_subtree.right = pivot
+        pivot.left = right_part
+        pivot.height = 1 + max(
+            self.get_height(pivot.left), self.get_height(pivot.right)
+        )
         l_subtree.height = 1 + max(
             self.get_height(l_subtree.left), self.get_height(l_subtree.right)
         )
