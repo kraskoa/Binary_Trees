@@ -16,15 +16,12 @@ def graph_maker(times, tree_operation_name):
     figure.savefig(tree_operation_name, format="png")
 
 
-def combined_graph_maker(
+def combined_2_graph_maker(
     times_1,
     times_1_name,
     times_2,
     times_2_name,
-    times_3,
-    times_3_name,
-    times_4,
-    times_4_name,
+    graph_name="Combined graph",
 ):
     plt.plot(
         list(times_1.keys()),
@@ -38,20 +35,8 @@ def combined_graph_maker(
         label=times_2_name,
         markersize=3,
     )
-    plt.plot(
-        list(times_3.keys()),
-        list(times_3.values()),
-        label=times_3_name,
-        markersize=3,
-    )
-    plt.plot(
-        list(times_4.keys()),
-        list(times_4.values()),
-        label=times_4_name,
-        markersize=3,
-    )
     plt.legend()
-    plt.title(label="All sorts")
+    plt.title(label=graph_name)
     figure = plt.gcf()
     plt.show()
-    figure.savefig("all_sorts.png", format="png")
+    figure.savefig(f'{graph_name}.png', format="png")
