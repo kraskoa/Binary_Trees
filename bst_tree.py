@@ -10,7 +10,7 @@ class Node:
 
 
 class BST_tree:
-    def __init__(self, root: Node):
+    def __init__(self, root = None):
         self.root = root
 
     def search(self, root, key):
