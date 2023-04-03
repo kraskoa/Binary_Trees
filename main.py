@@ -4,6 +4,7 @@ import random
 from bst_tree import BST_tree, Node
 from avl_tree import AVL_Tree
 from graph_maker import graph_maker, combined_2_graph_maker
+from create_list import create_list
 
 
 def main():
@@ -25,12 +26,12 @@ def main():
         10000,
     ]
 
-    random_number_list = []
-    for _ in range(10000):
-        random_number_list.append(random.randint(1, 30000))
+    test_lists = {}
+    for i in range(1, 10):
+        test_lists[1000 * i] = create_list(1000 * i)
 
-    for number_of_numbers in number_list:
-        new_list = random_number_list[:number_of_numbers]
+    for key in test_lists.keys():
+        new_list = test_lists[key]
         gc_old = gc.isenabled()
         gc.disable()
         start = time.process_time()
@@ -42,15 +43,15 @@ def main():
         insert_time = stop - start
         if gc_old:
             gc.enable()
-        BST_insert_times[number_of_numbers] = insert_time
+        BST_insert_times[key] = insert_time
     graph_maker(BST_insert_times, "BST creation times")
     print("BST creation times: ", BST_insert_times)
 
-    for number_of_numbers in number_list:
-        new_list = random_number_list[:number_of_numbers]
-        root = Node(random_number_list[0])
+    for key in test_lists.keys():
+        new_list = test_lists[key]
+        root = Node(test_lists[key][0])
         bst_tree = BST_tree(root)
-        for number in random_number_list[1:]:
+        for number in test_lists[key]:
             bst_tree.insert(root, number)
         gc_old = gc.isenabled()
         gc.disable()
@@ -61,15 +62,15 @@ def main():
         search_time = stop - start
         if gc_old:
             gc.enable()
-        BST_search_times[number_of_numbers] = search_time
+        BST_search_times[key] = search_time
     graph_maker(BST_search_times, "BST search times")
     print("BST search times: ", BST_search_times)
 
-    for number_of_numbers in number_list:
-        new_list = random_number_list[:number_of_numbers]
-        root = Node(random_number_list[0])
+    for key in test_lists.keys():
+        new_list = test_lists[key]
+        root = Node(test_lists[key][0])
         bst_tree = BST_tree(root)
-        for number in random_number_list[1:]:
+        for number in test_lists[key]:
             bst_tree.insert(root, number)
         gc_old = gc.isenabled()
         gc.disable()
@@ -80,32 +81,32 @@ def main():
         remove_time = stop - start
         if gc_old:
             gc.enable()
-        BST_remove_times[number_of_numbers] = remove_time
+        BST_remove_times[key] = remove_time
     graph_maker(BST_remove_times, "BST remove times")
     print("BST remove times: ", BST_remove_times)
 
-    for number_of_numbers in number_list:
-        new_list = random_number_list[:number_of_numbers]
+    for key in test_lists.keys():
+        new_list = test_lists[key]
         gc_old = gc.isenabled()
         gc.disable()
         start = time.process_time()
         avl_tree = AVL_Tree()
         root = None
-        for number in new_list[1:]:
+        for number in test_lists[key]:
             avl_tree.insert_node(root, number)
         stop = time.process_time()
         insert_time = stop - start
         if gc_old:
             gc.enable()
-        AVL_insert_times[number_of_numbers] = insert_time
+        AVL_insert_times[key] = insert_time
     graph_maker(AVL_insert_times, "AVL creation times")
     print("AVL creation times: ", AVL_insert_times)
 
-    for number_of_numbers in number_list:
-        new_list = random_number_list[:number_of_numbers]
+    for key in test_lists.keys():
+        new_list = test_lists[key]
         avl_tree = AVL_Tree()
         root = None
-        for number in random_number_list[1:]:
+        for number in test_lists[key]:
             avl_tree.insert_node(root, number)
         gc_old = gc.isenabled()
         gc.disable()
@@ -116,7 +117,7 @@ def main():
         search_time = stop - start
         if gc_old:
             gc.enable()
-        AVL_search_times[number_of_numbers] = search_time
+        AVL_search_times[key] = search_time
     graph_maker(AVL_search_times, "AVL search times")
     print("AVL search times: ", AVL_search_times)
 
@@ -125,7 +126,7 @@ def main():
         "BST creation times",
         AVL_insert_times,
         "AVL creation times",
-        "Combined creation times"
+        "Combined creation times",
     )
 
     combined_2_graph_maker(
@@ -133,9 +134,8 @@ def main():
         "BST search times",
         AVL_search_times,
         "AVL search times",
-        "Combined search times"
+        "Combined search times",
     )
-
 
 
 if __name__ == "__main__":
