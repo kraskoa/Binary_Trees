@@ -10,9 +10,6 @@ class Node:
 
 
 class AVL_Tree:
-    def __init__(self, root: Node):
-        self.root = root
-
     def insert_node(self, root, key):
         if not root:
             return Node(key)

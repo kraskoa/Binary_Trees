@@ -7,22 +7,22 @@ from graph_maker import graph_maker, combined_graph_maker
 
 
 def main():
-    BST_instert_times = {}
+    BST_insert_times = {}
     BST_search_times = {}
     AVL_insert_times = {}
     AVL_search_times = {}
     number_list = [
-    1000,
-    2000,
-    3000,
-    4000,
-    5000,
-    6000,
-    7000,
-    8000,
-    9000,
-    10000,
-]
+        1000,
+        2000,
+        3000,
+        4000,
+        5000,
+        6000,
+        7000,
+        8000,
+        9000,
+        10000,
+    ]
 
     random_number_list = []
     for _ in range(10000):
@@ -41,9 +41,9 @@ def main():
         insert_time = stop - start
         if gc_old:
             gc.enable()
-        BST_instert_times[number_of_numbers] = insert_time
-    graph_maker(BST_instert_times, "BST creation times")
-    print("BST creation times: ", BST_instert_times)
+        BST_insert_times[number_of_numbers] = insert_time
+    graph_maker(BST_insert_times, "BST creation times")
+    print("BST creation times: ", BST_insert_times)
 
     for number_of_numbers in number_list:
         new_list = random_number_list[:number_of_numbers]
@@ -63,8 +63,6 @@ def main():
         BST_search_times[number_of_numbers] = search_time
     graph_maker(BST_search_times, "BST search times")
     print("BST search times: ", BST_search_times)
-
-    bst_tree.print_tree(root, 6)
 
 
 
