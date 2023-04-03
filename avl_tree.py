@@ -1,7 +1,7 @@
 import sys
 
 
-class tree_node:
+class Node:
     def __init__(self, key):
         self.key = key
         self.left = None
@@ -10,9 +10,12 @@ class tree_node:
 
 
 class AVL_Tree:
+    def __init__(self, root: Node):
+        self.root = root
+
     def insert_node(self, root, key):
         if not root:
-            return tree_node(key)
+            return Node(key)
         elif key < root.key:
             root.left = self.insert_node(root.left, key)
         else:
@@ -91,8 +94,8 @@ class AVL_Tree:
 
 # AVL Tree printing test case (uncomment to run).
 # Przekopiujemy do maina żeby pokazać Chabko jak działa printowanie:
-# test_tree = AVL_Tree()
 # root = None
+# test_tree = AVL_Tree(root)
 # nums = create_random_list(30)
 # for num in nums:
 #   root = myTree.insert_node(root, num)
