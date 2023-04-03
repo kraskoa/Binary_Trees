@@ -64,6 +64,8 @@ def main():
     graph_maker(BST_search_times, "BST search times")
     print("BST search times: ", BST_search_times)
 
+    bst_tree.print_tree(root, 6)
+
 
 
 if __name__ == "__main__":
