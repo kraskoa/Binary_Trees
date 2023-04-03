@@ -97,10 +97,10 @@ class BST_tree:
 
 
 def main():
-    root = Node(25)
+    root = Node(random.randint(1, 30000))
     tree = BST_tree(root)
-    for i in range(50):
-        tree.insert(root, random.randint(1, 100))
+    for i in range(100):
+        tree.insert(root, random.randint(1, 30000))
     tree.print_tree(root)
 
 
